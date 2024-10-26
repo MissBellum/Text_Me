@@ -23,7 +23,7 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', include('chatroom.urls')),
-    path('', RedirectView.as_view(url='home/', permanent=True)),
+    path('textme/', include('chatroom.urls')),
+    path('', RedirectView.as_view(url='textme/', permanent=True)),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
