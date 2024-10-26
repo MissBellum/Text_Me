@@ -28,11 +28,13 @@
 
         {% block content %}
         <div>
-            <p>Whats on your mind? TextMe!</p>
+            <form action="/submit" method="post">
             <div class="mb-3">
-                <label for="userInput" class="userInput-label"></label>
-                <textarea class="user__input" name="userInput" id="textMe" rows="3" cols="25"></textarea>
+                <label for="userInput" class="userInput-label">Whats on your mind? TextMe!</label>
             </div>
+            <textarea class="user__input" name="userInput" id="textMe" rows="3" cols="25" placeholder="Say something" max-length='300' required></textarea>
+            <button type="submit">Submit</button>
+        </form>
         </div>
         {% endblock %}
 
