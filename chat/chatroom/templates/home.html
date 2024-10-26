@@ -22,12 +22,18 @@
     <div class="container">
         {% block header %}
         <header class="my-4">
-            <h1>My Django Application</h1>
+            <h1>Howdy...</h1>
         </header>
         {% endblock %}
 
         {% block content %}
-        <p>Hey, TextMe!</p>
+        <div>
+            <p>Whats on your mind? TextMe!</p>
+            <div class="mb-3">
+                <label for="userInput" class="userInput-label"></label>
+                <textarea class="user__input" name="userInput" id="textMe" rows="3" cols="25"></textarea>
+            </div>
+        </div>
         {% endblock %}
 
         {% block footer %}
