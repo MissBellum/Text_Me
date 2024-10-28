@@ -28,7 +28,7 @@
 
         {% block content %}
         <div>
-            <form action="{% url 'chatpage' %}" method="post">
+            <form action="{% url 'textbot' %}" method="post">
                 {% csrf_token %}
                 <div class="mb-3">
                     <label for="userInput" class="userInput-label">Whats on your mind? TextMe!</label>

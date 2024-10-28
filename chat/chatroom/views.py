@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from openai import OpenAI
+from .models import TextBot
 import os
 
 
@@ -13,7 +14,7 @@ def home(request):
 def chatroom(request):
     return render(request, 'chatroom.html')
 
-def chatpage(request):
+def textbot(request):
     if request.method == 'POST':
         user_input = request.POST.get('userInput')  
         completion = client.chat.completions.create(model='gpt-4o', messages=[{'role': 'user', 'content': user_input}])
