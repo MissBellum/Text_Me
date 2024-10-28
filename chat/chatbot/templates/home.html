@@ -22,19 +22,25 @@
     <div class="container">
         {% block header %}
         <header class="my-4">
-            <h1>Howdy...</h1>
+            <h1>Howdy!</h1>
         </header>
         {% endblock %}
 
         {% block content %}
         <div>
             <form action="/submit" method="post">
-            <div class="mb-3">
-                <label for="userInput" class="userInput-label">Whats on your mind? TextMe!</label>
-            </div>
-            <textarea class="user__input" name="userInput" id="textMe" rows="3" cols="25" placeholder="Say something" max-length='300' required></textarea>
-            <button type="submit">Submit</button>
-        </form>
+                <div class="mb-3">
+                    <label for="userInput" class="userInput-label">Whats on your mind? TextMe!</label>
+                </div>
+                <div>
+                    <textarea class="user__input" name="userInput" id="textMe" rows="3" cols="25" placeholder="Say something..." max-length='300' required></textarea>
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div>
+            <p>Have a fun topic to discuss?</p>
+            <a href="#">Create a chatroom</a>
         </div>
         {% endblock %}
 
