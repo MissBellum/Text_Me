@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     {% block title %}
-    <title>My Django App</title>
+    <title>TextMe</title>
     {% endblock %}
 
     <!-- Bootstrap CSS -->
@@ -28,7 +28,8 @@
 
         {% block content %}
         <div>
-            <form action="/submit" method="post">
+            <form action="{% url 'chatpage' %}" method="post">
+                {% csrf_token %}
                 <div class="mb-3">
                     <label for="userInput" class="userInput-label">Whats on your mind? TextMe!</label>
                 </div>
