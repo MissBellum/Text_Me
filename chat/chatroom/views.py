@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from django.utils import timezone
+from django.contrib.auth.models import User
 
 from .models import TextBot
 
@@ -26,18 +26,11 @@ def chatroom(request):
     return render(request, 'chatroom.html')
 
 def textbot(request):
-    convo = TextBot.objects.filter(user=request.user)
-
     if request.method == 'POST':
         user_input = request.POST.get('userInput')
         answer = question(user_input)
 
-        chat = TextBot(user=request.user, message=user_input, response=answer, time=timezone.now)
-        chat.save()
-
-        return JsonResponse({'message': user_input, 'response': answer})
-
-    return render(request, 'chatroom.html', context={'convo': convo})
+        return render(request, 'chatroom.html', context={'answer': answer})
 
     
 

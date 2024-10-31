@@ -45,6 +45,12 @@
         </div>
         {% endblock %}
 
+        <!-- base.html or any template -->
+    {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}">Logout</a>
+    {% endif %}
+
+
         {% block footer %}
         <footer class="text-muted mt-5">
             <p>&copy; TextMe App</p>
