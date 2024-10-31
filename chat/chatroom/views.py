@@ -1,18 +1,23 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.utils import timezone
+
+from .models import TextBot
+
+import os
 import google.generativeai as genai
 from dotenv import load_dotenv
-# from .models import TextBot
-import os
 
 load_dotenv()
 
 # Create your views here.
 genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
 
-model = genai.GenerativeModel("gemini-1.5-flash")
-response = model.generate_content("Write a story about a magic backpack.")
-print(response.text)
+def question(prompt):
+    model = genai.GenerativeModel("gemini-1.5-flash")
+    response = model.generate_content(prompt)
+    message = response.text
+    return message
 
 def home(request):
     return render(request, 'home.html')
@@ -20,12 +25,19 @@ def home(request):
 def chatroom(request):
     return render(request, 'chatroom.html')
 
-# def textbot(request):
-#     if request.method == 'POST':
-#         user_input = request.POST.get('userInput')  
-#         completion = client.chat.completions.create(model='gpt-4o', messages=[{'role': 'user', 'content': user_input}])
-#         message = completion.choices[0].message
-#         return render(request, 'chatpage.html', context={'message': message})
+def textbot(request):
+    convo = TextBot.objects.filter(user=request.user)
+
+    if request.method == 'POST':
+        user_input = request.POST.get('userInput')
+        answer = question(user_input)
+
+        chat = TextBot(user=request.user, message=user_input, response=answer, time=timezone.now)
+        chat.save()
+
+        return JsonResponse({'message': user_input, 'response': answer})
+
+    return render(request, 'chatroom.html', context={'convo': convo})
 
     
 

@@ -8,5 +8,10 @@
     <div>
         <h1>Text Me</h1>
         <p class="user__input">{{ message }}</p>
+        <form action="{% url 'textbot' %}" method="post">
+            {% csrf_token %}
+            <textarea class="user__input" name="userInput" id="chatMe" rows="3" cols="25" placeholder="Message" max-length='300' required></textarea>
+            <button type="submit">Submit</button>
+        </form>
     </div>
 {% endblock %}
