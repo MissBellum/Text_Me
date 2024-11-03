@@ -33,4 +33,8 @@ def textbot(request):
         return render(request, 'chatroom.html', context={'answer': answer})
 
     
+# print("My name is I'm Blessed.")
+# girl = "Chisom"
 
+
+# My name is I'm Blessed.
